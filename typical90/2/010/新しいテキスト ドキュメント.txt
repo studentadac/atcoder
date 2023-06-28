@@ -1,0 +1,64 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+
+int main(void) {
+   
+   int n;
+   std::cin >> n;
+   
+  
+    int class_mates[2][n];
+   for (int i = 0; i < 2; i++) {
+       
+     for (int j = 0; j < n; j++) {
+         class_mates[i][j]=0;
+     }  
+       
+   }
+   
+
+  // int one_cnt=0,two_cnt=0;
+
+long  one_sum[n+1];
+long  two_sum[n+1];
+one_sum[0]=0;
+two_sum[0]=0;
+
+for (int i = 0; i < n; i++) {
+  one_sum[i+1]=one_sum[i];
+  two_sum[i+1]=two_sum[i];
+ // std::cout << one_sum[i] << std::endl;
+  
+  rep(j,2)
+ {
+  std::cin >> class_mates[j][i];
+  //cout<<class_mates[j][i]<<endl;
+ }
+  
+  if(class_mates[0][i]==1)
+    one_sum[i+1]+=class_mates[1][i];
+  else 
+two_sum[i+1]+=class_mates[1][i];
+
+
+}
+
+int q;
+std::cin >> q;
+
+for (int i = 0; i < q; i++) {
+   int start,end;
+   std::cin >> start>>end;
+   std::cout << one_sum[end]- one_sum[start-1] << " ";
+   std::cout << two_sum[end]- two_sum[start-1] << endl;
+   
+}
+
+
+
+
+
+
+    }
